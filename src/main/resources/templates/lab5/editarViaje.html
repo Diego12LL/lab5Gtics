@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Viaje</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous">
+</head>
+<body>
+<main>
+
+
+  <div class="container px-4 py-5">
+
+    <div claaa="row">
+      <a class="btn btn-primary mt-4 mb-4" th:href="@{/listaViajes}">Viajes</a>
+      <a class="btn btn-primary mt-4 mb-4" th:href="@{/listaMascotas}">Mascotas</a>
+      <a class="btn btn-primary mt-4 mb-4" th:href="@{/employees}">Lugares</a>
+    </div>
+
+    <h1 class="pb-2 mb-4 border-bottom">Editar Viaje</h1>
+    <form method="post" th:action="@{'/actualizarViaje'}" class="col-4" th:object="${viaje}">
+      <input th:value="${viaje.idviaje}" name="idViaje" type="hidden"/>
+      <div class="mb-3">
+        <label class="form-label">Punto de Recojo</label>
+        <input th:field="*{puntorecojo}" type="text" class="form-control"/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Cantidad de personas</label>
+        <input th:field="*{cantpersonas}" type="text" class="form-control"/>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Cantidad de perros</label>
+        <input th:field="*{cantperros}" type="text" class="form-control" disabled="disabled"/>
+      </div>
+
+      <div class="form-group">
+        <label for="persona">Persona</label>
+        <select class="form-control" name="persona" id="persona">
+          <option th:each="persona : ${listaPersonas}" th:value="${persona.idpersona}" th:text="${persona.nombrepersona}"
+                  th:selected="${persona.idpersona}"></option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="lugar">Lugar</label>
+        <select class="form-control" name="lugar" id="lugar">
+          <option th:each="lugar : ${listaLugares}" th:value="${lugar.idlugar}" th:text="${lugar.nombrelugar}"
+                  th:selected="${lugar.idlugar}"></option>
+        </select>
+      </div>
+
+      <a th:href="@{'/listaViajes'}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>

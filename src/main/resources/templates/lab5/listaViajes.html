@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+        crossorigin="anonymous">
+  <title>Lista de Viajes</title>
+</head>
+<body>
+
+
+
+<div class="container">
+
+  <div claaa="row">
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{/listaViajes}">Viajes</a>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{/listaMascotas}">Mascotas</a>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{/employees}">Lugares</a>
+  </div>
+
+  <h2>Lista de Viajes Programados</h2>
+
+
+  <div claaa="row">
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{/newViaje}">Nuevo Viaje</a>
+  </div>
+
+
+  <table class="table table-sm">
+    <tr>
+      <th>#</th>
+      <th>Punto de Recojo</th>
+      <th>Cantidad de personas</th>
+      <th>Cantidad de perros</th>
+      <th>Persona</th>
+      <th>Lugar</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr th:each="viaje, info: ${listaViajes}">
+      <td th:text="${info.index + 1}"></td>
+      <td th:text="${viaje.getPuntorecojo()}"></td>
+      <td th:text="${viaje.getCantpersonas()}"></td>
+      <td th:text="${viaje.getCantperros()}"></td>
+      <td th:text="${viaje.getPersona().getNombrepersona()}"></td>
+      <td th:text="${viaje.getLugar().getNombrelugar()}"></td>
+      <td><a class="btn btn-primary" th:href="@{'/editarViaje?id=' + ${viaje.idviaje}}">Editar</a></td>
+      <td><a class="btn btn-danger" th:href="@{'/eliminarViaje?id=' + ${viaje.idviaje}}">Borrar</a>
+      </td>
+    </tr>
+  </table>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+</html>
